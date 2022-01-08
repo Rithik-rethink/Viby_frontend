@@ -1,4 +1,4 @@
 
-## Emotion Based Song Recommendation System
+## Mood Based Song Recommendation System
 
 - Project under development
