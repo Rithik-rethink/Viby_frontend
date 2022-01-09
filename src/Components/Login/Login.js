@@ -4,7 +4,14 @@ import './Login.css';
 function Login(){
     return(
         <div className='login'>
-            <h1>Login Page </h1>
+            <div className='login_container'>
+                <h1>
+                    <center>
+                    All your Shazams in one place.
+                    </center>
+                </h1>
+                
+            </div>
         </div>
     );
 }

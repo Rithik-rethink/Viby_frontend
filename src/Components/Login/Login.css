@@ -1,0 +1,14 @@
+.login{
+    color: white;
+    height: 100vh;
+    background-image: linear-gradient(to right, #45caff, #ff1b6b);
+    display: grid;
+    place-items: center;
+}
+.login_container{
+    border-radius: 22px;
+    padding: 5px;
+    height: auto;
+    width: 50%;
+    background-color: black;
+}
