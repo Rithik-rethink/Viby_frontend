@@ -54,8 +54,8 @@ function Register(){
     }
 
     return(
-        <div className='login'>
-            <div className='login_container'>
+        <div className='register'>
+            <div className='register_container'>
                 <div className='mb-3 row offset-1 justify-content-center'>
                     <h1 className='mt-3'>
                         <center>
@@ -69,7 +69,7 @@ function Register(){
                         {errorname?<TextField id="outlined-basic" className='textfield col-12 col-sm-12' color='primary' focused inputProps={{style: {fontSize: 25, color: 'white'}}} InputLabelProps={{style: {fontSize: 25}}} label="Nickname" variant="filled" onChange={(event)=>handleChange(event,"nickname")} error/>:<TextField id="outlined-basic" className='textfield col-12 col-sm-12' color='primary' focused inputProps={{style: {fontSize: 25, color: 'white'}}} InputLabelProps={{style: {fontSize: 25}}} label="Nickname" variant="filled" onChange={(event)=>handleChange(event,"nickname")}/>}
                         <center className='mt-2' style={{color:"red"}}>{errormsg}</center>
                         <Button variant='contained' className='mt-3' color='secondary' style={{width:'100%'}} onClick={handleClick}>Sign Up</Button>
-                        <center><p className='login_redirect mt-2'>Already have an account?<b><a href='/login'> Sign In.</a></b></p></center>
+                        <center><p className='register_redirect mt-2'>Already have an account?<b><a href='/login'> Sign In.</a></b></p></center>
                     </form>
                 </div>
             </div>
