@@ -11,7 +11,7 @@ function Footer() {
             <div className='container'>
                 <div className='row mt-5'>
                     <div className='col-12 col-sm-4'><img src={logo} alt="logo" width="50%"/></div>
-                    <div className='col-12 offset-5 col-sm-3 ' style={{justifyContent:"space-between"}}>
+                    <div className='col-12 offset-5 col-sm-3' style={{justifyContent:"space-between"}}>
                         <a href='https://www.instagram.com/re_thinkk/'><InstagramIcon color="secondary" fontSize='large'/></a>
                         <a href='https://www.facebook.com'><FacebookIcon color='secondary' fontSize='large'/></a>
                         <a hred='https://www.twitter.com'><TwitterIcon color='secondary' fontSize='large'/></a>

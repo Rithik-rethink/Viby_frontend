@@ -43,7 +43,7 @@ function Login(){
 
     return(
         <div className='login'>
-            <div className='login_container mt-5'>
+            <div className='login_container'>
                 <div className='mb-3 row offset-1 justify-content-center'>
                     <h1 className='mt-3'>
                         <center>

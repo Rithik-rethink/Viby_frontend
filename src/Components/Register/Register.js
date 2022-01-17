@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import './Register.css';
 import {TextField} from '@material-ui/core';
 import {Button} from '@material-ui/core';
+import Axios from 'axios';
 
 function Register(){
     const [email, setEmail]=useState("");
@@ -12,6 +13,7 @@ function Register(){
     const [errormsg, setErrormsg]=useState("");
     const [errorpwd, setErrorpwd]=useState(false);
     const [errorname, setErrorname]=useState(false);
+    const [redirect, setRedirect]=useState(false);
 
     function handleChange(event, element){
         var value=event.currentTarget.value;
@@ -49,10 +51,27 @@ function Register(){
         // console.log("Email is "+email);
         // console.log("Password is "+password);
         // console.log("Name is "+nickname);
-        
+        var params={
+            "username": nickname,
+            "email": email,
+            "password": password
+        }
+        const url= "http://localhost:8262/register";
+        Axios.post(url , params, {
+            "headers" : {
+                "Accept" : "application/json",
+                "content-type" : "application/json",
+            },
+            withCredentials : true
+        }).then(response => {
+            setRedirect(true);
+        }).catch(err => {
+            console.log(err);
+            setErrormsg(err.message);
+        });
         console.log('clicked');
     }
-
+    if(redirect) return(<Redirect to={{pathname: "/in", state: {token: this.state.token}}}/>);
     return(
         <div className='register'>
             <div className='register_container'>
