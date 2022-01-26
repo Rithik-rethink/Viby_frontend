@@ -75,7 +75,7 @@ function Login() {
                         </center>
                     </h1>
                     {loadingMessage()}
-                    {errorMessage()}
+                    <center>{errorMessage()}</center>
                     <form className='form' noValidate autoComplete='off'>
                         <TextField id="outlined-basic" className='textfield col-12 col-sm-12' 
                         color='primary' focused inputProps={{style: {fontSize: 25, color: 'white'}}} 

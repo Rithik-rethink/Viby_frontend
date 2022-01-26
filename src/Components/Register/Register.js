@@ -119,13 +119,13 @@ function Register(){
                         color='primary' focused inputProps={{style: {fontSize: 25, color: 'white'}}} 
                         InputLabelProps={{style: {fontSize: 25}}} label="Password" variant="filled" 
                         onChange={handleChange("password")}
-                        value={password}/>
+                        value={password} type='password'/>
 
                         <TextField id="outlined-basic" className='textfield col-12 col-sm-12' 
                         color='primary' focused inputProps={{style: {fontSize: 25, color: 'white'}}} 
                         InputLabelProps={{style: {fontSize: 25}}} label="Re-enter Password" variant="filled" 
                         onChange={handleChange("repassword")}
-                        value={repassword}/>  
+                        value={repassword} type='password'/>  
                         
                         <Button variant='contained' className='mt-3' 
                             color='secondary' style={{width:'100%'}}
