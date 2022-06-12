@@ -1,0 +1,39 @@
+.musiclist {
+    padding: 30px;
+    flex: 0.8;
+    background-color: #040404;
+    height: 100%;
+    color: white;
+    margin-bottom: 3%;    
+}
+.musiclist__searchbar {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+.musiclist__searchbar__left {
+    flex: 0.5;
+    min-width: 70px;
+    background-color: white;
+    color: grey;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+.musiclist__searchbar__left > input {
+    border: none;
+    width: 100%;
+}
+.musiclist__searchbar__left > input:active {
+    border: none;
+    outline: none;
+    width: 100%;
+}
+.musiclist__searchbar__right {
+    display: flex;
+    align-items: center;
+}
+.musiclist__searchbar__right > h4 {
+    margin-left: 10px;
+}
