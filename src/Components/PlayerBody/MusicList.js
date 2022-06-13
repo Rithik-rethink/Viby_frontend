@@ -11,6 +11,7 @@ import {carousel_items} from '../constants';
 import axios from 'axios';
 import SongCard from '../SongCard/SongCard';
 import {song_data} from '../constants';
+import { PauseSharp } from '@material-ui/icons';
 
 function Item(props)
 {
@@ -33,6 +34,9 @@ function Item(props)
 
 function MusicList() {
   const [songs, setSongs] = useState([]);
+
+  let audio = new Audio();
+
   useEffect(()=>{
     axios.get('https://vibyapi.herokuapp.com/dashboard?n=5').then((res)=>{
         setSongs(res);
@@ -40,8 +44,21 @@ function MusicList() {
     }).catch((err)=>{
         console.log(err.message); 
         setSongs(song_data);   
-    }, [])
-  });
+    })
+  }, []);
+
+    const clickToPlay = (url, isPlaying) => {
+        audio.pause();
+        audio = new Audio(url);
+        console.log("clicked");
+        if(isPlaying) {
+            audio.pause();
+        }
+        else {
+            audio.play();
+        }
+    }
+
   return (
     <div className='musiclist'>
         <div className='musiclist__searchbar'>
@@ -69,7 +86,7 @@ function MusicList() {
             <div className='row'>
                 {song_data.map((song) => {
                     return (<div key={song.id} className='col-12 col-sm-4'>
-                        <SongCard props={song}/>
+                        <SongCard props={song} clickToPlay={clickToPlay}/>
                     </div>)
                 })}
             </div>
