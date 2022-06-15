@@ -1,5 +1,5 @@
 import React from 'react';
-import { Paper } from '@mui/material'
+import { Button, Paper } from '@mui/material'
 import Stack from '@mui/material/Stack';
 
 function SongCard(props, clickToPlay) {
@@ -21,6 +21,12 @@ function SongCard(props, clickToPlay) {
           <img src={props.props.album_cover} alt={props.props.album_name} width='100%'/>
           <h4 style={{color: 'white'}}>{props.props.album_name}</h4>
           <h5 style={{color: 'grey'}}>{props.props.artist_name}</h5>
+          <Stack direction='row' spacing={2}>
+            <Button variant='outlined' fontSize='small'>{props.props.preview_link === 'null' ? 'Coming Soon' : 'Listen'}</Button>
+            <a href={props.props.spotify_link} target='_blank' style={{'text-decoration':'none'}}>
+              <Button variant='contained'>Spotify</Button>
+            </a>
+          </Stack>
       </Stack>
     </Paper>
   )

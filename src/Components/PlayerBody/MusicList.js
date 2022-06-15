@@ -8,10 +8,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import {carousel_items} from '../constants';
-import axios from 'axios';
 import SongCard from '../SongCard/SongCard';
-import {song_data} from '../constants';
-import { PauseSharp } from '@material-ui/icons';
 
 function Item(props)
 {
@@ -32,31 +29,13 @@ function Item(props)
     )
 }
 
-function MusicList() {
-  const [songs, setSongs] = useState([]);
-
+function MusicList(props) {
   let audio = new Audio();
-
-  useEffect(()=>{
-    axios.get('https://vibyapi.herokuapp.com/dashboard?n=5').then((res)=>{
-        setSongs(res);
-        console.log(songs);
-    }).catch((err)=>{
-        console.log(err.message); 
-        setSongs(song_data);   
-    })
-  }, []);
 
     const clickToPlay = (url, isPlaying) => {
         audio.pause();
         audio = new Audio(url);
-        console.log("clicked");
-        if(isPlaying) {
-            audio.pause();
-        }
-        else {
-            audio.play();
-        }
+        audio.play();
     }
 
   return (
@@ -84,8 +63,8 @@ function MusicList() {
         <div className='musiclist__songs container'>
             <h3>Recommended</h3>
             <div className='row'>
-                {song_data.map((song) => {
-                    return (<div key={song.id} className='col-12 col-sm-4'>
+                {props.songs.map((song) => {
+                    return (<div key={song.id} className='col-12 col-sm-3'>
                         <SongCard props={song} clickToPlay={clickToPlay}/>
                     </div>)
                 })}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useRef} from 'react';
 import './Player.css';
 import ShuffleIcon from '@material-ui/icons/Shuffle';
 import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
@@ -14,6 +14,10 @@ import { Slider } from '@mui/material';
 import SongLogo from '../media/song.jpg';
 
 function Player() {
+    const [currentTime, setCurrentTime] = useState(0);
+    const progressBar = useRef();
+    const audioPlayer = useRef();
+
   return (
     <div className='player'>
         <div className='player__left'>
@@ -43,7 +47,7 @@ function Player() {
                     <VolumeDownIcon/>
                 </Grid>
                 <Grid item xs>
-                    <Slider/>
+                    <Slider />
                 </Grid>
             </Grid>
         </div>
