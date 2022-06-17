@@ -7,6 +7,8 @@ import ProfilePic from "../media/dp.jpg";
 import SearchIcon from '@mui/icons-material/Search';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import Lottie from 'react-lottie';
+import loadAnimation from '../../lotties/loading.json';
 import {carousel_items} from '../constants';
 import SongCard from '../SongCard/SongCard';
 
@@ -32,11 +34,11 @@ function Item(props)
 function MusicList(props) {
   let audio = new Audio();
 
-    const clickToPlay = (url, isPlaying) => {
-        audio.pause();
-        audio = new Audio(url);
-        audio.play();
-    }
+    // const clickToPlay = (url, isPlaying) => {
+    //     audio.pause();
+    //     audio = new Audio(url);
+    //     audio.play();
+    // }
 
   return (
     <div className='musiclist'>
@@ -61,14 +63,32 @@ function MusicList(props) {
             </Carousel>
         </div>
         <div className='musiclist__songs container'>
-            <h3>Recommended</h3>
+            <h3>{props.songs.length > 0 ? 'Recommended' : 'Goodness on the way..'}</h3>
+            {props.songs.length > 0 ? 
             <div className='row'>
                 {props.songs.map((song) => {
-                    return (<div key={song.id} className='col-12 col-sm-3'>
-                        <SongCard props={song} clickToPlay={clickToPlay}/>
+                    return (<div key={song.id} className='col-12 col-sm-4'>
+                        <SongCard props={song}/>
                     </div>)
                 })}
             </div>
+            : <div>
+                <Lottie
+                    options={
+                        {
+                            loop: true,
+                            autoplay: true,
+                            animationData: loadAnimation,
+                            rendererSettings: {
+                                preserveAspectRatio: 'xMidYMid slice',
+                            },
+                        }
+                    }
+                    height={300}
+                    width={300}
+                />
+            </div>
+            }
         </div>
     </div>
   )
