@@ -16,12 +16,12 @@ function App() {
     // <Playlist model='M1' playlist='Excited'/>
     // <Playlist model='M1' playlist='Happy'/>
     // <Playlist model='M1' playlist='Sad'/>
-    // <Playlist model='M1' playlist='Sleepy'/>
+    <Playlist model='M1' playlist='Sleepy'/>
 
     //Model 2 Componet Calls
     // <Playlist model="M2" playlist="Happy"/>
     // <Playlist model="M2" playlist="Sad"/>
-    <Playlist model="M2" playlist="Calm"/>
+    // <Playlist model="M2" playlist="Calm"/>
     // <Playlist model="M2" playlist="Angry"/>
   );
 }

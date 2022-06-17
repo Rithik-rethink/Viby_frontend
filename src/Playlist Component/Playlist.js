@@ -28,6 +28,7 @@ export default function Playlist({model, playlist}) {
 
         axios.get(`https://vibyapi.herokuapp.com/Playlist/${model}?mood=${playlist}`).then((res)=>{
             setSongs(shuffle(res.data))
+            setError(false)
         })
         .catch((err) => {
             setError(true)
@@ -87,7 +88,7 @@ export default function Playlist({model, playlist}) {
         })}
          </tbody>
         </table>
-        {error && <h1>No Playlist Found</h1>}
+        {error && <h1>Loading...</h1>}
     </div>
     )
 }
