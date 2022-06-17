@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import './MusicList.css';
 import Carousel from 'react-material-ui-carousel'
-import { Paper, Button } from '@mui/material'
+import { Paper, Button } from '@mui/material';
+import { useSelector } from 'react-redux';
 import Avatar from '@mui/material/Avatar';
-import ProfilePic from "../media/dp.jpg";
 import SearchIcon from '@mui/icons-material/Search';
+import ProfilePic from "../media/dp.jpg";
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import Lottie from 'react-lottie';
 import loadAnimation from '../../lotties/loading.json';
+import waitAnimation from '../../lotties/wait.json';
 import {carousel_items} from '../constants';
 import SongCard from '../SongCard/SongCard';
+import PlaylistCard from '../SongCard/PlaylistCard';
 
 function Item(props)
 {
@@ -32,13 +35,16 @@ function Item(props)
 }
 
 function MusicList(props) {
-  let audio = new Audio();
-
+    
+    const {botSongs} = useSelector((state) => state.bot);
+    const {likedSongs} = useSelector((state) => state.liked);
     // const clickToPlay = (url, isPlaying) => {
     //     audio.pause();
     //     audio = new Audio(url);
     //     audio.play();
     // }
+    const M1 = ['Angry', 'Calm', 'Happy', 'Sad'];
+    const M2 = ['Angry', 'Calm', 'Content', 'Delighted', 'Depressed', 'Excited', 'Happy', 'Sad', 'Sleepy'];
 
   return (
     <div className='musiclist'>
@@ -62,15 +68,78 @@ function MusicList(props) {
                 }
             </Carousel>
         </div>
-        <div className='musiclist__songs container'>
-            <h3>{props.songs.length > 0 ? 'Recommended' : 'Goodness on the way..'}</h3>
-            {props.songs.length > 0 ? 
-            <div className='row'>
-                {props.songs.map((song) => {
-                    return (<div key={song.id} className='col-12 col-sm-4'>
-                        <SongCard props={song}/>
-                    </div>)
-                })}
+        {props.songs.length > 0 ? 
+            <div className='musiclist__songs container'>
+                <h3>{likedSongs.length > 0 ? 'We added more songs based on your taste': null}</h3>
+                <div className='row'>
+                    {likedSongs.map((song) => {
+                        return (<div key={song.id} className='col-12 col-sm-4'>
+                            <SongCard props={song}/>
+                        </div>);
+                    })}
+                </div>
+                <h3>{botSongs.length > 0 ? 'Here are few songs to make your day better' : 'Vibe your way through!'}</h3>
+                {botSongs.length > 0 ? 
+                <div className='row'>
+                    {botSongs.map((song) => {
+                        return (<div key={song.id} className='col-12 col-sm-4'>
+                            <SongCard props={song}/>
+                        </div>)
+                    })}
+                </div>
+                : <div>
+                    <Lottie
+                        options={
+                            {
+                                loop: true,
+                                autoplay: true,
+                                animationData: waitAnimation,
+                                rendererSettings: {
+                                    preserveAspectRatio: 'xMidYMid slice',
+                                },
+                            }
+                        }
+                        height={300}
+                        width={300}
+                    />
+                </div>
+                }
+                <br/><h3>Playlists to suit your mood </h3>
+                <div className='row'>
+                    {M1.map((ele) => {
+                        return(
+                            <div key={ele} direction='row' className='col-12 col-sm-4' onClick={() => {
+                                props.setIsPlaylist(true);
+                                props.setModel('M2');
+                                props.setPlaylist(ele);
+                            }}>
+                                <PlaylistCard name={ele}/>
+                            </div>
+                        );
+                    })}
+                </div>
+                <br/><h3>Playlists to suit your mood (Special Edition)</h3>
+                <div className='row'>
+                    {M2.map((ele) =>{
+                        return(
+                            <div key={ele} direction='row' className='col-12 col-sm-4' onClick={()=>{
+                                props.setIsPlaylist(true);
+                                props.setModel('M1');
+                                props.setPlaylist(ele);
+                            }}>
+                                <PlaylistCard name={ele}/>
+                            </div>
+                        );
+                    })}
+                </div>
+                <br/><h3>{props.songs.length > 0 ? 'Trending' : 'Goodness on the way..'}</h3>
+                <div className='row'>
+                    {props.songs.map((song) => {
+                        return (<div key={song.id} className='col-12 col-sm-4'>
+                            <SongCard props={song}/>
+                        </div>)
+                    })}
+                </div>
             </div>
             : <div>
                 <Lottie
@@ -84,12 +153,11 @@ function MusicList(props) {
                             },
                         }
                     }
-                    height={300}
-                    width={300}
+                    height={320}
+                    width={320}
                 />
             </div>
-            }
-        </div>
+        }
     </div>
   )
 }

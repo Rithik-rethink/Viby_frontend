@@ -1,23 +1,18 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import './Player.css';
-import ShuffleIcon from '@material-ui/icons/Shuffle';
-import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
-import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline';
-import SkipNextIcon from '@material-ui/icons/SkipNext';
-import RepeatIcon from '@material-ui/icons/Repeat';
-import VolumeUpIcon from '@material-ui/icons/VolumeUp';
 import VolumeDownIcon from '@material-ui/icons/VolumeDown';
-import PauseCircleOutlineIcon from '@material-ui/icons/PauseCircleOutline';
 import Grid from '@mui/material/Grid';
+import { Button } from '@mui/material';
+import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import { useSelector, useDispatch } from 'react-redux';
 import { PlaylistPlay } from '@material-ui/icons';
-import { Slider } from '@mui/material';
+import { Slider, Stack } from '@mui/material';
 import SongLogo from '../media/song.jpg';
-import { clickToPause, clickToResume } from '../../redux/track';
 
 function Player() {
-  const { track_name, track_artist, track_url, track_cover, isPlaying } = useSelector((state) => state.track);
+  const { track_name, track_artist, track_url, track_cover, audio, isPlaying, track_spotify } = useSelector((state) => state.track);
   const dispatch = useDispatch();
+
   return (
     <div className='player'>
         <div className='player__left'>
@@ -27,29 +22,22 @@ function Player() {
                 alt=""
             />
             <div className='player__songInfo'>
-                <h4>{track_name}</h4>
-                <p>{track_artist}</p>
+                <h6>{track_name.length > 20 ? track_name.substring(0,21) + '...' : track_name}</h6>
+                <p>{track_artist.length > 20 ? track_artist.substring(0,21) + '...' : track_artist}</p>
             </div>
         </div>
         <div className='player__center'>
-            <ShuffleIcon className='player__green' style={{'cursor' : 'pointer'}}/>
+            {/* <ShuffleIcon className='player__green' style={{'cursor' : 'pointer'}}/>
             <SkipPreviousIcon className='player__icon' style={{'cursor' : 'pointer'}}/>
             {isPlaying ? <PauseCircleOutlineIcon className='player___play' fontSize='large' onClick={()=>dispatch(clickToPause())} style={{'cursor' : 'pointer'}}/>:<PlayCircleOutlineIcon className='player__play' fontSize='large' onClick={()=>dispatch(clickToResume())} style={{'cursor' : 'pointer'}}/>}
             <SkipNextIcon className='player__icon' style={{'cursor' : 'pointer'}}/>
-            <RepeatIcon className='player__green' style={{'cursor' : 'pointer'}}/>
+            <RepeatIcon className='player__green' style={{'cursor' : 'pointer'}}/> */}
+            <audio id="audio0" data1={track_cover} data2={track_name} src={track_url} controls volume preload="auto" autoPlay></audio>
         </div>
         <div className='player__right'>
-            <Grid container spacing={2}>
-                <Grid item>
-                    <PlaylistPlay/>
-                </Grid>
-                <Grid item>
-                    <VolumeDownIcon/>
-                </Grid>
-                <Grid item xs>
-                    <Slider />
-                </Grid>
-            </Grid>
+            <a href={track_spotify} target='_blank' style={{'textDecoration':'none', width: '100%', 'textAlign': 'center'}}>
+                <Button variant='contained' sx={{backgroundColor: '#1DB954', color: 'white'}} fullWidth startIcon={<OpenInNewIcon/>}>Spotify</Button>
+            </a>
         </div>
     </div>
   )

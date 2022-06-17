@@ -7,6 +7,7 @@ export const trackSlice = createSlice({
         track_artist: '',
         track_url: '',
         track_cover: '',
+        track_spotify: '',
         audio: new Audio(),
         isPlaying: false,
     },
@@ -16,24 +17,11 @@ export const trackSlice = createSlice({
             state.track_artist = action.payload.artist_name;
             state.track_cover = action.payload.album_cover;
             state.track_url = action.payload.preview_link;
+            state.track_spotify = action.payload.spotify_link;
         },
-        clickToPlay: (state, action) => {
-            state.audio.pause();
-            state.audio = new Audio(action.payload);
-            state.audio.play();
-            state.isPlaying = true;
-        },
-        clickToPause: (state, action) => {
-            state.audio.pause();
-            state.isPlaying = false;
-        },
-        clickToResume: (state, action) => {
-            state.audio.play();
-            state.isPlaying = true;
-        }
     },
 });
 
-export const { handleChange, clickToPlay, clickToPause, clickToResume } = trackSlice.actions;
+export const { handleChange } = trackSlice.actions;
  
 export default trackSlice.reducer;

@@ -3,6 +3,7 @@ import './Chatbot.css';
 import Chat from 'react-simple-chatbot';
 import { ThemeProvider } from 'styled-components';
 import FindPlaylists from './FindPlaylists';
+import { Button } from '@mui/material';
 
 const theme = {
   background: '#040404',
@@ -16,6 +17,13 @@ const theme = {
 };
 
 function Chatbot() {
+  const [key, setKey] = React.useState(0);
+
+  const resetBot = () => {
+    let newKey = key + 1;
+    setKey(newKey);
+  }
+
   return (
     <div className='chatbot'>
       <strong>
@@ -26,11 +34,12 @@ function Chatbot() {
       <span className='bot'>
         <ThemeProvider theme={theme}>
         <Chat
+          key={key}
           style={{width: '100%'}}
           steps={[
           {
           id:'intro', 
-          message:'Hi! How was your day?', 
+          message:'Hi! I am Viby. Nice to meet you!', 
           trigger: 'user_intro',
           },
           {
@@ -40,7 +49,7 @@ function Chatbot() {
           },
           {
             id: 'describe-day',
-            message: 'Please describe your day',
+            message: 'How are you doing today?',
             trigger: 'user_describe',
           },
           {
@@ -50,18 +59,19 @@ function Chatbot() {
           },
           {
             id: 'find-playlist',
-            message: 'Please wait.. finding the best playlist to better your mood!',
+            message: 'Please wait.. finding the best playlist for you!',
             trigger: 'end-message'
           },
           {
             id: 'end-message',
             component: <FindPlaylists/>,
             asMessage: true,
-            end: true 
-          }
+            end: true,
+          },
           ]}
         />
         </ThemeProvider>
+      <Button fullWidth variant='contained' onClick={() => resetBot()} sx={{marginTop: '2%'}}>Reset</Button>
       </span>
     </div>
   )
