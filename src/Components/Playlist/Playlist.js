@@ -12,6 +12,7 @@ import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import Lottie from 'react-lottie';
 import loadList from '../../lotties/loadlist.json';
 import ProfilePic from "../media/dp.jpg";
+import logo from '../media/040404.png';
 
 function shuffle(array){
     let currentIndex = array.length, randomIndex;
@@ -52,12 +53,11 @@ export default function Playlist({model, playlist, setIsPlaylist}) {
     <div className='root'>
         <div className='musiclist__searchbar'>
             <div className='musiclist__searchbar__left'>
-                <SearchIcon/>
-                <input placeholder='Search for Artists, Songs, or Playlists' type='text'/>
+                <img src={logo} alt='viby-logo' width='50%'/>
             </div>
             <div className='musiclist__searchbar__right'>
                 <Avatar alt="Remy Sharp" src={ProfilePic}/>
-                <h4>Rithik Dutt</h4>
+                <h4>student</h4>
             </div>
         </div>
         <IconButton onClick={() => setIsPlaylist(false)} fontSize='large' sx={{backgroundColor: '#3f51b5', color: 'white'}}>

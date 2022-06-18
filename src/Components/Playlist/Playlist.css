@@ -15,12 +15,10 @@
 .musiclist__searchbar__left {
     flex: 0.5;
     min-width: 70px;
-    background-color: white;
     color: grey;
     border-radius: 30px;
     display: flex;
     align-items: center;
-    padding: 10px;
 }
 .musiclist__searchbar__left > input {
     border: none;

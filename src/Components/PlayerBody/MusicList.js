@@ -14,6 +14,7 @@ import waitAnimation from '../../lotties/wait.json';
 import {carousel_items} from '../constants';
 import SongCard from '../SongCard/SongCard';
 import PlaylistCard from '../SongCard/PlaylistCard';
+import logo from '../media/040404.png';
 
 function Item(props)
 {
@@ -50,12 +51,11 @@ function MusicList(props) {
     <div className='musiclist'>
         <div className='musiclist__searchbar'>
             <div className='musiclist__searchbar__left'>
-                <SearchIcon/>
-                <input placeholder='Search for Artists, Songs, or Playlists' type='text'/>
+                <img src={logo} alt='viby-logo' width='50%'/>
             </div>
             <div className='musiclist__searchbar__right'>
                 <Avatar alt="Remy Sharp" src={ProfilePic}/>
-                <h4>Rithik Dutt</h4>
+                <h4>student</h4>
             </div>
         </div>
         <div className='musiclist__carousel'>
