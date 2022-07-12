@@ -5,7 +5,7 @@ import './Login.css';
 import {TextField} from '@material-ui/core';
 import {Button} from '@material-ui/core';
 import {} from '@material-ui/core';
-
+import {Navigate} from 'react-router-dom';
 
 function Login() {
 
@@ -13,10 +13,11 @@ function Login() {
         email : "",
         password: "",
         error: "",
-        loading: false
+        loading: false,
+        success: false,
     });
 
-    const {email,password,error,loading} = values
+    const {email,password,error,loading,success} = values
     const {user} = isAuthenticated();
     
     const handleChange = name => event => {
@@ -25,16 +26,17 @@ function Login() {
 
     const onSubmit = event => {
         event.preventDefault();
-        setValues({...values, error: false, loading:true})
+        setValues({...values, error: false, loading:true, success:false})
         signin({email,password})
         .then(data => {
             if(data.error){
-                setValues({...values, error: data.error, loading:false})
+                setValues({...values, error: data.error, loading:false, success:false})
             }
             else{
                 authenticate(data, () => {
                     setValues({
                         ...values,
+                        success: true,
                     })
                 })
             console.log(user)
@@ -66,6 +68,7 @@ function Login() {
 
     
     return(
+        values.success ? <Navigate to ='/'/> :
         <div className='login'>
             <div className='login_container'>
                 <div className='mb-3 row offset-1 justify-content-center'>

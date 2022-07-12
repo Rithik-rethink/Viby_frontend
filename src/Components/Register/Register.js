@@ -3,7 +3,8 @@ import {Link} from 'react-router-dom'
 import './Register.css';
 import {TextField} from '@material-ui/core';
 import {Button} from '@material-ui/core';
-import{signup} from "../../BackEnd"
+import{signup} from "../../BackEnd";
+import { Navigate } from 'react-router-dom';
 
 function Register(){
     // const [email, setEmail]=useState("");
@@ -22,7 +23,7 @@ function Register(){
         password: "",
         repassword: "",
         error: "",
-        succcess: false,
+        success: false,
     })
 
     const {name,email,gender,password,repassword, success, error}=values
@@ -87,6 +88,7 @@ function Register(){
 
     
     return(
+        values.success ? <Navigate to = '/'/> : 
         <div className='register'>
             <div className='register_container'>
                 <div className='mb-3 row offset-1 justify-content-center'>
